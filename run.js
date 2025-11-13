@@ -1,3 +1,5 @@
+// run.js
+
 const { Server, Keypair, TransactionBuilder, Operation, Asset, Memo } = require('stellar-sdk');
 const ed25519 = require('ed25519-hd-key');
 const bip39 = require('bip39');
@@ -5,7 +7,7 @@ let sendNotification = () => {};
 let removeMnemonicCallback = () => false;
 
 const PI_API_SERVERS = [
-    'http://160.25.233.182:31401',
+    'http://160.25.233.182:31401', // Contoh Server Pi Node
 ];
 
 const PI_NETWORK_PASSPHRASE = 'Pi Network';
@@ -30,7 +32,7 @@ function setMnemonicRemover(removerFunction) {
     removeMnemonicCallback = removerFunction;
 }
 
-// 🎯 FUNGSI YANG DIMODIFIKASI UNTUK MENGHAPUS DUPLIKAT
+// FUNGSI INI MEMFILTER DUPLIKAT SEBELUM MENYIMPANNYA
 function updateConfig(newConfig) {
     // Memastikan mnemonics yang baru adalah array
     if (newConfig.mnemonics && Array.isArray(newConfig.mnemonics)) {
@@ -52,7 +54,7 @@ function updateConfig(newConfig) {
             console.log(`[Config Updated] Dihapus **${duplicatesRemoved}** frasa duplikat.`);
         }
     } else {
-        // Jika mnemonics bukan array atau tidak ada, gunakan konfigurasi seperti biasa
+        // Jika mnemonics bukan array, gunakan konfigurasi seperti biasa
         currentConfig = { ...newConfig };
     }
     
@@ -105,9 +107,6 @@ async function processWallet(mnemonic, recipientAddress, walletIndex, memoText) 
         console.log(`Saldo saat ini: ${currentBalance.toFixed(7)} π. Klaim tersedia (DIABAIKAN): ${claimables.records.length}`);
         const isMuxedAddress = recipientAddress.startsWith('M');
 
-        // Bagian 1: Claim dan Transfer - DIHAPUS/DIABAIKAN SESUAI PERMINTAAN
-        // ------------------------------------------------------------------
-        
         // Bagian 2: Kirim Saldo yang ada (Hanya Kirim)
         const freshAccount = await server.loadAccount(senderAddress);
         const fee = baseFee / 1e12;
