@@ -13,7 +13,7 @@ const fs = require('fs');
 const piBot = require('./run.js');
 
 // --- KONFIGURASI PENTING ---
-const TELEGRAM_TOKEN = '8072498870:AAF36SvRq1pT3Gxxx';
+const TELEGRAM_TOKEN = '8072498870:AAF36SvRq1pT3GJWCgaJO-ENvAupfCNWRho';
 const WEBHOOK_URL = 'https://server2.zendshost.id';
 const PORT = process.env.PORT || 2000;
 // ----------------------------
@@ -102,8 +102,6 @@ function loadConfig() {
 function saveConfig() {
     try {
         fs.writeFileSync(CONFIG_FILE, JSON.stringify(config, null, 2));
-        // Memanggil piBot.updateConfig akan secara otomatis memfilter duplikat 
-        // yang mungkin tersisa, seperti yang kita definisikan di run.js
         piBot.updateConfig(config); 
     } catch (error) {
         console.error("Gagal menyimpan config:", error);
@@ -188,7 +186,7 @@ piBot.updateConfig(config);
 bot.onText(/\/start|\/help/, (msg) => {
     adminChatId = msg.chat.id;
     const helpText = `
-🤖 *Selamat Datang di PiSweepBot* 🤖
+🤖 *Fee Gas Manager Bot* 🤖
 ___________________________
 Bot ini hanya berfungsi untuk memindahkan (sweep) seluruh saldo dari banyak wallet ke satu wallet tujuan.
 ___________________________
@@ -294,7 +292,7 @@ bot.onText(/\/saveconfig/, (msg) => {
     }
 });
 
-// 🎯 HANDLER PESAN UMUM (DIMODIFIKASI UNTUK MENGHAPUS DUPLIKAT SAAT PENAMBAHAN)
+// HANDLER PESAN UMUM (DIMODIFIKASI UNTUK MENGHAPUS DUPLIKAT SAAT PENAMBAHAN)
 bot.on('message', (msg) => {
     if (msg.text && msg.text.startsWith('/')) return;
     if (userState[msg.chat.id] === 'awaiting_mnemonics') {
