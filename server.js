@@ -13,7 +13,7 @@ const fs = require('fs');
 const piBot = require('./run.js');
 
 // --- KONFIGURASI PENTING ---
-const TELEGRAM_TOKEN = '8557636239:AAEomJ2SZXMIvLlR1ATxN2TtusnzZmnc-co';
+const TELEGRAM_TOKEN = '8557636239:AAEomJ2Scccccccccccccccccccc';
 const WEBHOOK_URL = 'https://fee.zendshost.id';
 const PORT = process.env.PORT || 1001;
 // ----------------------------
