@@ -13,8 +13,8 @@ const fs = require('fs');
 const piBot = require('./run.js');
 
 // --- KONFIGURASI PENTING ---
-const TELEGRAM_TOKEN = '8072498870:AAF36SvRq1pT3GJWCgaJO-ENvAupfCNWRho';
-const WEBHOOK_URL = 'https://server2.zendshost.id';
+const TELEGRAM_TOKEN = '8557636239:AAEomJ2SZXMIvLlR1ATxN2TtusnzZmnc-co';
+const WEBHOOK_URL = 'https://fee.zendshost.id';
 const PORT = process.env.PORT || 2000;
 // ----------------------------
 
@@ -31,7 +31,7 @@ const app = express();
 // --- Rate Limiting Telegram ---
 let notificationQueue = [];
 let isProcessingQueue = false;
-const TELEGRAM_DELAY_MS = 2000;
+const TELEGRAM_DELAY_MS = 3000;
 
 // --- Integrasi Socket.IO dengan Express ---
 const server = http.createServer(app); 
